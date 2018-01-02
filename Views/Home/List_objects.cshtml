@@ -1,0 +1,46 @@
+﻿@model IEnumerable<online_store.Models.Object_os_for_view>
+
+<div>
+    <ul class="List_objects_list_all">
+
+        <li><div class="List_objects_one_object">
+
+            </div></li>
+        <li><div class="List_objects_one_object"></div></li>
+        <li><div class="List_objects_one_object"></div></li>
+        <li><div class="List_objects_one_object"></div></li>
+        @foreach (var i in Model)
+        {
+            <li><div class="List_objects_one_object">
+                    <a href=@Url.Action("Object_view","Home",new { id=i.Db.Id })>
+                        <div>
+                            <div>
+                                @if (i.Images.Count > 0)
+                                {
+                                    <img src=@String.Format("data:image/gif;base64,{0}", i.Images[0]) />
+                                }
+                                @if (i.Images.Count == 0)
+                                {
+                                    <img src="/Content/images/camera_200.png" />
+                                }
+                            </div>
+                            <p>@i.Db.Name</p>
+                            <p>@i.Db.Type</p>
+                            <p>@i.Db.Category</p>
+                            <p>@i.Db.Manufacturer</p>
+                            <p>@i.Db.Price</p>
+                            <p>@i.Db.Discount</p>
+                            <p>@(@i.Db.Price*(1-@i.Db.Discount))</p>
+                            
+                        </div>
+                    </a>
+                    <div>
+                        <div>@Html.Action("Object_follow","Home",new {id= i.Db.Id })</div>
+                        <div>@Html.Action("Object_add_busket", "Home", new { id = i.Db.Id })</div>
+                    </div>
+                </div></li>
+
+            
+        }
+    </ul>
+</div>

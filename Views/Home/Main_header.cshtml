@@ -1,4 +1,47 @@
-﻿
+﻿<script>
+    var t;
+    function up() {
+        var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        if (top > 0) {
+            window.scrollBy(0, -100);
+            t = setTimeout('up()', 20);
+        } else clearTimeout(t);
+        return false;
+    }
+
+
+    function isVisible(tag) {
+        var t = $(tag);
+        var w = $(window);
+        var wt = w.scrollTop();
+        var tt = t.offset().top;
+        var tb = tt + t.height();
+        return (tb <= wt) ;
+    }
+
+    $(function () {
+        $(window).scroll(function () {
+            var b = $("#Main_header_check_small_or_big_header");
+            if (!b.prop("shown") && isVisible(b)) {
+                b.prop("shown", true);
+                var o = document.getElementById("Main_header_small_id")
+                
+                
+                o.style.display = 'block';
+
+            }
+            else {
+                if (b.prop("shown") && !isVisible(b)) {
+                    b.prop("shown", false);
+                    var o = document.getElementById("Main_header_small_id")
+                   
+                    o.style.display = 'none';
+                }
+            }
+        });
+    });
+
+    </script>
 
 
 <div class="Main_header_big">
@@ -9,15 +52,15 @@
         <div class="div_inline_block Main_header_left_block">
             <div class="Main_header_sections_view">
                 <ul class="Main_header_sections_list_ul">
-                    <li>
-                        <div class="Main_header_one_section_block div_inline_block">what1</div>
-                    </li>
-                    <li>
-                        <div class="Main_header_one_section_block div_inline_block">what2</div>
-                    </li>
-                    <li>
-                        <div class="Main_header_one_section_block div_inline_block">what3</div>
-                    </li>
+                    @foreach (var i in ViewBag.List_class_for_header)
+                    {
+                        <li>
+                            <div class="Main_header_one_section_block div_inline_block">@i</div>
+                        </li>
+
+                    }
+                    
+                    
                 </ul>
             </div>
         </div>
@@ -26,7 +69,7 @@
             <div class="">@Html.Partial("_LoginPartial")</div>
 
 
-            <div class="Main_header_basket_link">@Html.ActionLink("Корзина", "basket", "Home", new { }, new { })</div>
+            <div class="Main_header_basket_link">@Html.ActionLink("Корзина", "basket", "Home", new { }, new {@class= "link_standart_for_div link_without_prop" })</div>
 
 
         </div>
@@ -34,6 +77,10 @@
 
 
 </div>
-<div class="Main_header_small">
-
+<div id="Main_header_check_small_or_big_header">
+</div>
+<div class="Main_header_small" id="Main_header_small_id">
+    <div class="Main_header_small_name div_inline_block">@Html.ActionLink("Online store", "Index", "Home", new { }, new { @class = "link_standart_for_div link_without_prop" })</div>
+    <div class="Main_header_small_basket div_inline_block">@Html.ActionLink("Корзина", "basket", "Home", new { }, new { @class = "link_standart_for_div link_without_prop" })</div>
+    @Html.Partial("_LoginPartial")
 </div>
