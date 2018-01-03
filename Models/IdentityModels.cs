@@ -20,6 +20,17 @@ namespace online_store.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        public DbSet<Object_os> Objects { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Connect_image> Images { get; set; }
+        public DbSet<Connect_basket> baskets { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Follow_obgect> Follow_obgects { get; set; }
+
+
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

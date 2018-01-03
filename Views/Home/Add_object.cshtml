@@ -1,0 +1,23 @@
+﻿@model online_store.Models.Object_os
+
+@{
+    ViewBag.Title = "Add_object";
+}
+
+<h2>Add_object</h2>
+
+@using (Html.BeginForm("Add_object","Home"))
+{
+    @Html.EditorFor(x1=>x1.Name)
+    @Html.EditorFor(x1 => x1.Category)
+    @Html.EditorFor(x1 => x1.Color)
+    @Html.EditorFor(x1 => x1.Composition)
+    @Html.EditorFor(x1 => x1.Count_buy)
+    @Html.EditorFor(x1 => x1.Description)
+
+    @Html.EditorFor(x1 => x1.Discount)
+    @Html.EditorFor(x1 => x1.Manufacturer)
+    @Html.EditorFor(x1 => x1.Price)
+    @Html.EditorFor(x1 => x1.Type)
+}
+

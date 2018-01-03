@@ -13,6 +13,9 @@ namespace online_store.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         //var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+        //[Authorize(Roles="admin")] [Authorize]
+
+
         public ActionResult Index()
         {
             return View();
@@ -40,6 +43,21 @@ namespace online_store.Controllers
             ViewBag.Id = id;
             return PartialView();
         }
+        public ActionResult Add_object()
+        {
+            Object_os res = new Object_os();
+
+            return View(res);
+        }
+        [HttpPost]
+        public ActionResult Add_object(Object_os a)
+        {
+            //проверки и тд
+
+            db.Objects.Add(a);
+            db.SaveChanges();
+            return RedirectToAction("Object_view", new {id=a.Id });
+        }
 
 
 
@@ -58,9 +76,8 @@ namespace online_store.Controllers
 
 
 
-
-        //-----------------------------------
-        public ActionResult Main_header()
+            //-----------------------------------
+            public ActionResult Main_header()
         {
             
             ViewBag.List_class_for_header=new string[] {"what1", "what2", "what3", "what4", "what5", "what6", "what7", "what7" };
