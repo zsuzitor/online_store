@@ -1,0 +1,58 @@
+﻿@model online_store.Models.Object_os_for_view
+
+@{
+    ViewBag.Title = "Object_view";
+}
+<script>
+    function change_image(a) {
+        var main_image = document.getElementById("Object_view_main_image_id");
+        main_image.src =a.src;
+    }
+
+
+
+</script>
+
+<h2>Object_view</h2>
+<div>
+    <div>
+        <div>
+            @foreach(var i in Model.Images)
+            {
+                <div>
+                    <img onclick="change_image(this)" src=@String.Format("data:image/gif;base64,{0}", i.Image) />
+                </div>
+            }
+
+        </div>
+        <img id="Object_view_main_image_id" src=@String.Format("data:image/gif;base64,{0}", Model.Images[0].Image) />
+
+    </div>
+    <div>
+        <div>@Html.LabelFor(x1=>x1.Db.Name)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Id)</div>
+        
+        <div>@Html.LabelFor(x1 => x1.Db.Type)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Category)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Manufacturer)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Price)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Discount)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Color)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Composition)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Description)</div>
+        <div>@Html.LabelFor(x1 => x1.Db.Count_buy)</div>
+        
+
+
+
+    </div>
+    <div>
+        <div>@Html.Action("Object_follow", "Home", new { id = Model.Db.Id })</div>
+        <div>@Html.Action("Object_add_busket", "Home", new { id = Model.Db.Id })</div>
+        <div>@Html.Action("Add_mark_for_object", "Home", new { id = Model.Db.Id })</div>
+    </div>
+
+
+
+
+</div>

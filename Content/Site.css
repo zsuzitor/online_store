@@ -184,3 +184,24 @@ div.Object_follow_follow_img{
     width:50px;
 }
 /**/
+
+/*Work_with_images_object*/
+div.Work_with_images_object_div_add_ph_button{
+    border:2px solid black;
+    background-color:aqua;
+    transition:1s;
+    width:250px;
+    cursor:pointer;
+}
+    div.Work_with_images_object_div_add_ph_button:hover {
+        border: 2px dashed black;
+        background-color: aquamarine;
+        transition: 1s;
+    }
+
+div.Add_mark_for_object_white_star {
+    background-image: url(/Content/images/white_star.phg);
+}
+div.Add_mark_for_object_yellow_star {
+    background-image: url(/Content/images/yellow_star.jpg);
+}

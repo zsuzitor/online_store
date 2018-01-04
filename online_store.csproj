@@ -270,6 +270,10 @@
     <Content Include="Views\Home\Object_follow.cshtml" />
     <Content Include="Views\Home\Object_add_basket.cshtml" />
     <Content Include="Views\Home\Add_object.cshtml" />
+    <Content Include="Views\Home\Work_with_images_object.cshtml" />
+    <Content Include="Views\Home\Delete_img_block.cshtml" />
+    <Content Include="Views\Home\Object_view.cshtml" />
+    <Content Include="Views\Home\Add_mark_for_object.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

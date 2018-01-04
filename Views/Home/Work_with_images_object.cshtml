@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Work_with_images_object";
+}
+<script>
+    var num = 0;
+    function add_new_block_img() {
+       
+        var block = document.getElementById("Work_with_images_object_block_adds_img");
+        var str = '<input type="file" name="uploadImage[' + num+']" />';
+        num += 1;
+        block.innerHTML = block.innerHTML + str;
+        
+
+    }
+
+
+</script>
+<h2>Work_with_images_object</h2>
+
+
+<div>
+
+
+    @foreach(var i in (List<online_store.Models.Connect_image>)ViewBag.Images)//(online_store.Models.Connect_image)
+    {
+        <div id=@string.Concat("Work_with_images_object_id_one_block_",i.Id)><div>
+    <img src=@String.Format("data:image/gif;base64,{0}", i.Image) />
+</div><div>@Ajax.ActionLink("Удалить","Delete_img_block", "Home",new {id= i.Id },new AjaxOptions{UpdateTargetId= string.Concat("Work_with_images_object_id_one_block_", i.Id) })</div></div>
+    }
+    <div>
+       @using (Html.BeginForm("Add_new_image", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       {
+           @Html.Hidden("id", ((int)ViewBag.Id))//((int)ViewBag.Id).ToString()
+        <div id="Work_with_images_object_block_adds_img">
+
+            
+        </div>
+
+        <div class="Work_with_images_object_div_add_ph_button" onclick="add_new_block_img()">Добавить поле для ввода картинки кнопка</div>
+        <input type="submit" class="submit" value="Отправить" />
+       }
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

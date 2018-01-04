@@ -36,11 +36,11 @@ namespace online_store.Models
     public class Object_os_for_view
     {
         public Object_os Db;
-        public List<byte[]> Images;
+        public List<Connect_image> Images;
         public Object_os_for_view(Object_os a)
         {
             Db = a;
-            Images = new List<byte[]>();
+            Images = new List<Connect_image>();
         }
     }
 }
