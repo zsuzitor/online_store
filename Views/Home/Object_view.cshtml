@@ -15,32 +15,47 @@
 
 <h2>Object_view</h2>
 <div>
-    <div>
-        <div>
+    <div class="div_inline_block Object_view_left_block">
+        <div class="Object_view_small_img_change_block div_inline_block">
             @foreach(var i in Model.Images)
             {
-                <div>
-                    <img onclick="change_image(this)" src=@String.Format("data:image/gif;base64,{0}", i.Image) />
+               
+                <div class="Object_view_small_img_change">
+                    <img onclick="change_image(this)" src=@String.Format("data:image/jpeg;base64," + Convert.ToBase64String(i.Image)) />
                 </div>
             }
 
         </div>
-        <img id="Object_view_main_image_id" src=@String.Format("data:image/gif;base64,{0}", Model.Images[0].Image) />
+        <div class="Object_view_main_img div_inline_block">
+            @if (Model.Images.Count > 0)
+            {
+                
+                <img id="Object_view_main_image_id" src=@String.Format("data:image/jpeg;base64," + Convert.ToBase64String(Model.Images[0].Image)) />
+            }
+            @if (Model.Images.Count == 0)
+            {
+                <img id="Object_view_main_image_id" src="/Content/images/camera_200.png" />
+            }
+            
+        </div>
 
     </div>
-    <div>
-        <div>@Html.LabelFor(x1=>x1.Db.Name)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Id)</div>
+    <div  class="div_inline_block Object_view_right_block">
+        <div>@Html.Label(Model.Db.Name)</div>
+        <div>@Html.Label(Model.Db.Id.ToString())</div>
         
-        <div>@Html.LabelFor(x1 => x1.Db.Type)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Category)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Manufacturer)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Price)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Discount)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Color)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Composition)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Description)</div>
-        <div>@Html.LabelFor(x1 => x1.Db.Count_buy)</div>
+        <div>@Html.Label(Model.Db.Type)</div>
+        <div>@Html.Label(Model.Db.Category)</div>
+        <div>@Html.Label(Model.Db.Manufacturer)</div>
+        <div>@Html.Label(Model.Db.Price.ToString())</div>
+        <div>@Html.Label(Model.Db.Discount.ToString())</div>
+        <div>@Html.Label(Model.Db.Color)</div>
+        <div>@Html.Label(Model.Db.Composition)</div>
+        <div>@Html.Label(Model.Db.Description)</div>
+        <div>@Html.Label(Model.Db.Count_buy.ToString())</div>
+        
+
+        
         
 
 
@@ -48,7 +63,7 @@
     </div>
     <div>
         <div>@Html.Action("Object_follow", "Home", new { id = Model.Db.Id })</div>
-        <div>@Html.Action("Object_add_busket", "Home", new { id = Model.Db.Id })</div>
+        <div>@Html.Action("Object_add_basket", "Home", new { id = Model.Db.Id })</div>
         <div>@Html.Action("Add_mark_for_object", "Home", new { id = Model.Db.Id })</div>
     </div>
 

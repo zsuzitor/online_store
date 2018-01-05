@@ -55,8 +55,8 @@ div.div_color_white {
 }
 div.div_body {
     position: relative;
-    width: 70%;
-    margin-left: 15%;
+    width: 80%;
+    margin-left: 10%;
     min-height: 400px;
     z-index: 3;
     background-color: white;
@@ -143,7 +143,7 @@ div.Main_header_big_under {
 }
 
 div.Main_header_small_name {
-    width:100px;
+    width:200px;
     font-size:25pt;
     font-style:italic;
     position:absolute;
@@ -200,8 +200,31 @@ div.Work_with_images_object_div_add_ph_button{
     }
 
 div.Add_mark_for_object_white_star {
-    background-image: url(/Content/images/white_star.phg);
+    background-image: url(/Content/images/white_star.png);
 }
 div.Add_mark_for_object_yellow_star {
     background-image: url(/Content/images/yellow_star.jpg);
+}
+div.Work_with_images_object_one_img_in {
+    width: 300px;
+    height: 450px;
+}
+/*Object_view*/
+div.Object_view_small_img_change {
+    height: 100px;
+    width: 70px;
+}
+div.Object_view_small_img_change_block {
+    height: 700px;
+    width: 75px;
+}
+div.Object_view_main_img{
+    width:300px;
+    height:450px;
+}
+div.Object_view_left_block{
+    width:50%;
+}
+div.Object_view_right_block{
+    width:49%;
 }

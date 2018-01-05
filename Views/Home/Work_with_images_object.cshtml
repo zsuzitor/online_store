@@ -24,8 +24,8 @@
 
     @foreach(var i in (List<online_store.Models.Connect_image>)ViewBag.Images)//(online_store.Models.Connect_image)
     {
-        <div id=@string.Concat("Work_with_images_object_id_one_block_",i.Id)><div>
-    <img src=@String.Format("data:image/gif;base64,{0}", i.Image) />
+        <div class="Work_with_images_object_one_img_in" id=@string.Concat("Work_with_images_object_id_one_block_",i.Id)><div>
+    <img src=@String.Format("data:image/jpeg;base64," + Convert.ToBase64String(i.Image)) />
 </div><div>@Ajax.ActionLink("Удалить","Delete_img_block", "Home",new {id= i.Id },new AjaxOptions{UpdateTargetId= string.Concat("Work_with_images_object_id_one_block_", i.Id) })</div></div>
     }
     <div>

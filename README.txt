@@ -28,7 +28,7 @@ Admin@mail.ru 1Admin1 qwer1!Z
 
 
 
-
+http://localhost:54671/Home/Object_view/1
 
 
 

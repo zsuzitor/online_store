@@ -24,11 +24,20 @@ namespace online_store.Controllers
         public ActionResult List_objects()
         {
             List<Object_os_for_view> res = new List<Object_os_for_view>();
-
-
+            var lst=db.Objects.ToList();
+            foreach(var i in lst)
+            {
+                res.Add(new Object_os_for_view(i));
+            }
             return PartialView(res);
         }
-        public ActionResult Object_view(int id)
+        public ActionResult List_objects_type()
+        {
+
+
+            return View();
+        }
+            public ActionResult Object_view(int id)
         {
             var not_res=db.Objects.FirstOrDefault(x1 => x1.Id == id);
             Object_os_for_view res = new Object_os_for_view(not_res);

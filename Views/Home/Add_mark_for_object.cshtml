@@ -14,7 +14,7 @@
         if (((int)ViewBag.Mark) < i)
         {
             <div class="Add_mark_for_object_white_star">
-                @Ajax.ActionLink("", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i }, new AjaxOptions { UpdateTargetId = "Add_mark_for_object_partial_id" }, new { @class = "link_standart_for_div" })
+                @Ajax.ActionLink(" ", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i }, new AjaxOptions { UpdateTargetId = "Add_mark_for_object_partial_id" }, new { @class = "link_standart_for_div" })
             </div>
         }
 
