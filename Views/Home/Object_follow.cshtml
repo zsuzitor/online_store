@@ -1,23 +1,42 @@
 ﻿
-<div id="Object_follow_block_all_id">
-
+<div>
+    @if (ViewBag.Follow == false)
+    {
+        <div class="Object_follow_follow_img_white">
+            @Ajax.ActionLink(" ", "Object_follow", new { id = ViewBag.Id, click=true }, new AjaxOptions { UpdateTargetId = "Object_follow_block_all_id" }, new { @class = "link_standart_for_div" })
+        </div>
+    }
     @if (ViewBag.Follow == true)
     {
-        <div class="Object_follow_follow_img">
-    <img src="/Content/images/red_heart.png" />
+        <div class="Object_follow_follow_img_red">
+            @Ajax.ActionLink(" ", "Object_follow", new { id = ViewBag.Id, click = true }, new AjaxOptions { UpdateTargetId = "Object_follow_block_all_id" }, new { @class = "link_standart_for_div" })
+        </div>
+    }
 </div>
-    <p>Удалить из избранного</p>
+@{ 
+    /*<div  >
+    @Ajax.ActionLink(" ", "Object_follow", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_follow_block_all_id" }, new { @class = "link_standart_for_div" })
+    @if (ViewBag.Follow == true)
+    {
+        <div class="Object_follow_follow_img_red">
+
+</div>
 
 
-        @Ajax.ActionLink("", "Object_follow", new { id= ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_follow_block_all_id" }, new {@class= "link_standart_for_div" })
+
+
     }
     @if (ViewBag.Follow == false)
     {
-        <div class="Object_follow_follow_img">
-            <img src="/Content/images/white_heart.png" />
+        <div class="Object_follow_follow_img_white">
         </div>
-        <p>Добавить в избранное</p>
-       @Ajax.ActionLink("", "Object_follow", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_follow_block_all_id" }, new { @class = "link_standart_for_div" })
+
+
+
+
+
     }
 
 </div>
+     */
+}

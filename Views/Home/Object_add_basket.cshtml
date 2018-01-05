@@ -1,26 +1,44 @@
 ﻿
-
-
-
-<div id="Object_add_basket_block_all_id">
-
-    @if (ViewBag.In_basket == true)
+<div>
+    @if (ViewBag.InBasket == false)
     {
-        <div class="Object_add_basket_follow_img">
-            <img src="/Content/images/red_heart.png" />
+        <div class="Object_add_basket_follow_img_empty">
+            @Ajax.ActionLink(" ", "Object_add_basket", new { id = ViewBag.Id, click = true }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
         </div>
-        <p>Удалить из корзины</p>
-
-
-        @Ajax.ActionLink("", "Object_add_basket", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
     }
-    @if (ViewBag.In_basket == false)
+    @if (ViewBag.InBasket == true)
     {
-        <div class="Object_add_basket_follow_img">
-            <img src="/Content/images/white_heart.png" />
+        <div class="Object_add_basket_follow_img_full">
+            @Ajax.ActionLink(" ", "Object_add_basket", new { id = ViewBag.Id, click = true }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
         </div>
-        <p>Добавить в корзину</p>
-        @Ajax.ActionLink("", "Object_add_basket", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
     }
+</div>
+
+
+
+@{
+/*
+ <div id="Object_add_basket_block_all_id">
+
+@if (ViewBag.In_basket == true)
+{
+    <div class="Object_add_basket_follow_img">
+        <img src="/Content/images/red_heart.png" />
+    </div>
+    <p>Удалить из корзины</p>
+
+
+    @Ajax.ActionLink("", "Object_add_basket", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
+}
+@if (ViewBag.In_basket == false)
+{
+    <div class="Object_add_basket_follow_img">
+        <img src="/Content/images/white_heart.png" />
+    </div>
+    <p>Добавить в корзину</p>
+    @Ajax.ActionLink("", "Object_add_basket", new { id = ViewBag.Id }, new AjaxOptions { UpdateTargetId = "Object_add_basket_block_all_id" }, new { @class = "link_standart_for_div" })
+}
 
 </div>
+ *  */
+}

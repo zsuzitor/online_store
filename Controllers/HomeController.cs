@@ -83,19 +83,80 @@ namespace online_store.Controllers
             return RedirectToAction("Add_mark_for_object","Home",new {id=id }); 
         }
         //[Authorize]
-        public ActionResult Object_follow(int id)
+        public ActionResult Object_follow(int id,bool click)
         {
+
+            var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             ViewBag.Id = id;
+            ViewBag.Follow = false;
+            if (string.IsNullOrEmpty(check_id))
+            {
+                var foll = db.Follow_obgects.FirstOrDefault(x1 => x1.Object_id == id && x1.Person_id == check_id);
+                if (foll != null)
+                {
+                    ViewBag.Follow = true;
+                    
+                }
+                if (click)
+                {
+                    if (ViewBag.Follow == true)
+                    {
+                        db.Follow_obgects.Remove(foll);
+                    }
+                    else
+                    {
+                        db.Follow_obgects.Add(new Follow_obgect() { Object_id=id, Person_id=check_id });
+                    }
+                    ViewBag.Follow = !ViewBag.Follow;
+                }
+            }
+            
+
+
             return PartialView();
         }
         //[Authorize]
-        public ActionResult Object_add_basket(int id)
+        public ActionResult Object_add_basket(int id, bool click)
         {
             ViewBag.Id = id;
+            var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            ViewBag.InBasket = false;
+            if (string.IsNullOrEmpty(check_id))
+            {
+                var bask = db.Baskets.FirstOrDefault(x1 => x1.Object_id == id && x1.Person_id == check_id);
+                if (bask != null)
+                {
+                    ViewBag.InBasket = true;
+
+                }
+                if (click)
+                {
+                    if (ViewBag.InBasket == true)
+                    {
+                        db.Baskets.Remove(bask);
+                    }
+                    else
+                    {
+                        db.Baskets.Add(new Connect_basket() { Object_id = id, Person_id = check_id });
+                    }
+                    ViewBag.InBasket = !ViewBag.InBasket;
+                }
+            }
+
+
+
             return PartialView();
         }
         //[Authorize(Roles="admin")]
-        public ActionResult Add_object()
+        public ActionResult Delete_object(int id)
+        {
+            db.Objects.Remove(db.Objects.First(x1=>x1.Id==id));
+            db.Comments.RemoveRange(db.Comments.Where(x1=>x1.Object_id==id));
+
+            return RedirectToAction("Index","Home",new { });
+        }
+            //[Authorize(Roles="admin")]
+            public ActionResult Add_object()
         {
             Object_os res = new Object_os();
 

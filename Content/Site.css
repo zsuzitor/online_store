@@ -168,9 +168,9 @@ div.Main_header_one_section_block{
 div.List_objects_one_object {
     margin-top: 10px;
     width: 250px;
-    height: 400px;
+    height: 500px;
     display: inline-block;
-    background-color: black;
+    border:1px solid black;
 }
 
 ul.List_objects_list_all li {
@@ -179,19 +179,40 @@ ul.List_objects_list_all li {
    
     margin-left: 10px;
 }
-div.Object_follow_follow_img{
-    height:50px;
-    width:50px;
+div.Object_follow_follow_img {
+    /*height:50px;
+    width:50px;*/
+}
+#Object_follow_block_all_id {
+    height: 50px;
+    width: 50px;
+    position:relative;
+}
+div.Object_follow_follow_img_white {
+    background-image: url(/Content/images/white_heart.jpg);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    
+    top:0;
+    left:0;
+}
+div.Object_follow_follow_img_red {
+    background-image: url(/Content/images/red_heart.png);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
 }
 /**/
-
 /*Work_with_images_object*/
-div.Work_with_images_object_div_add_ph_button{
-    border:2px solid black;
-    background-color:aqua;
-    transition:1s;
-    width:250px;
-    cursor:pointer;
+div.Work_with_images_object_div_add_ph_button {
+    border: 2px solid black;
+    background-color: aqua;
+    transition: 1s;
+    width: 250px;
+    cursor: pointer;
 }
     div.Work_with_images_object_div_add_ph_button:hover {
         border: 2px dashed black;
@@ -213,6 +234,7 @@ div.Work_with_images_object_one_img_in {
 div.Object_view_small_img_change {
     height: 100px;
     width: 70px;
+    cursor:pointer;
 }
 div.Object_view_small_img_change_block {
     height: 700px;
@@ -228,3 +250,24 @@ div.Object_view_left_block{
 div.Object_view_right_block{
     width:49%;
 }
+
+
+/*Object_add_basket*/
+div.Object_add_basket_follow_img_empty {
+    background-image: url(/Content/images/truck_empty.jpg);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+}
+
+div.Object_add_basket_follow_img_full {
+    background-image: url(/Content/images/truck_full.jpg);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+}
+/**/

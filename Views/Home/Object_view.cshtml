@@ -62,8 +62,9 @@
 
     </div>
     <div>
-        <div>@Html.Action("Object_follow", "Home", new { id = Model.Db.Id })</div>
-        <div>@Html.Action("Object_add_basket", "Home", new { id = Model.Db.Id })</div>
+        <div id="Object_follow_block_all_id">
+        @Html.Action("Object_follow", "Home", new { id = Model.Db.Id,click=false })</div>
+        <div id="Object_add_basket_block_all_id">@Html.Action("Object_add_basket", "Home", new { id = Model.Db.Id, click = false })</div>
         <div>@Html.Action("Add_mark_for_object", "Home", new { id = Model.Db.Id })</div>
     </div>
 
