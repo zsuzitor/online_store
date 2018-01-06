@@ -72,16 +72,21 @@ p{
     .link_without_prop:hover {
         text-decoration:none;
     }
-    /*-------------------------------------------------------------------------------------------------------------------*/
-    div.Main_header_big {
-        position: relative;
-        background-color: white;
-        height: 500px;
-        width: 96%;
-        left: 2%;
-        background-image: url(/Content/images/main_header_back_big.jpg);
-        background-size: 100% 100%;
-    }
+div.div_footer{
+    height:200px;
+    background-color:grey;
+    width:100%;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+div.Main_header_big {
+    position: relative;
+    background-color: white;
+    height: 500px;
+    width: 96%;
+    left: 2%;
+    background-image: url(/Content/images/main_header_back_big.jpg);
+    background-size: 100% 100%;
+}
 div.Main_header_big_v2 {
     height: 350px;
     background-color: white;
@@ -174,9 +179,8 @@ div.List_objects_one_object {
 }
 
 ul.List_objects_list_all li {
-    display: inline;
-   
-   
+    display: inline-block;
+    vertical-align: top;
     margin-left: 10px;
 }
 div.Object_follow_follow_img {
@@ -188,14 +192,17 @@ div.Object_follow_follow_img {
     width: 50px;
     position:relative;
 }
-div.Object_follow_follow_img_white {
+#Object_add_basket_block_all_id {
+    height: 50px;
+    width: 50px;
+    float:right;
+}div.Object_follow_follow_img_white {
     background-image: url(/Content/images/white_heart.jpg);
     background-size: 100% 100%;
     width: 50px;
     height: 50px;
-    
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 }
 div.Object_follow_follow_img_red {
     background-image: url(/Content/images/red_heart.png);
@@ -222,11 +229,22 @@ div.Work_with_images_object_div_add_ph_button {
 
 div.Add_mark_for_object_white_star {
     background-image: url(/Content/images/white_star.png);
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
 }
 div.Add_mark_for_object_yellow_star {
+    width: 20px;
+    height: 20px;
     background-image: url(/Content/images/yellow_star.jpg);
+    background-size: 100% 100%;
 }
-div.Work_with_images_object_one_img_in {
+div#Add_mark_for_object_partial_id {
+   
+}
+div.Add_mark_for_object_partial_class {
+    border: 2px solid black;
+}div.Work_with_images_object_one_img_in {
     width: 300px;
     height: 450px;
 }
@@ -237,21 +255,34 @@ div.Object_view_small_img_change {
     cursor:pointer;
 }
 div.Object_view_small_img_change_block {
-    height: 700px;
+    height: 450px;
     width: 75px;
 }
 div.Object_view_main_img{
     width:300px;
     height:450px;
 }
-div.Object_view_left_block{
-    width:50%;
+div.Object_view_main_img_under {
+    width: 300px;
+    height: 650px;
+}div.Object_view_left_block {
+    width: 50%;
 }
 div.Object_view_right_block{
     width:49%;
 }
+div.Object_view_one_comment_block {
+    border: 2px dashed #8fd4ff;
+    padding: 10px;
+    min-height: 250px;
+    max-height: 500px;
+}
+div.Object_view_comm_block_mark{
 
-
+}
+div.Object_view_mark_main {
+    border: 2px solid black;
+}
 /*Object_add_basket*/
 div.Object_add_basket_follow_img_empty {
     background-image: url(/Content/images/truck_empty.jpg);

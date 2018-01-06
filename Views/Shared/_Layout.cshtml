@@ -12,12 +12,12 @@
 
 </head>
 <body>
-   @Html.Action("Main_header")
+   @Html.Action("Main_header","Home")
 
 
     <div class="div_body">@RenderBody()</div>
         
-        <hr />
+        <hr /><div class="div_footer"></div>
         <footer>
             <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
         </footer>

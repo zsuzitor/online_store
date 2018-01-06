@@ -37,10 +37,12 @@ namespace online_store.Models
     {
         public Object_os Db;
         public List<Connect_image> Images;
+        public List<Comment_view> Comments;
         public Object_os_for_view(Object_os a)
         {
             Db = a;
             Images = new List<Connect_image>();
+            Comments = new List<Comment_view>();
         }
     }
 }

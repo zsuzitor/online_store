@@ -2,19 +2,19 @@
 
 
 
-<div id="Add_mark_for_object_partial_id">
+
     @for (int i = 1; i < 6; ++i)
     {
         if (((int)ViewBag.Mark) >= i)
         {
-            <div class="Add_mark_for_object_yellow_star">
-                @Ajax.ActionLink("", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i }, new AjaxOptions { UpdateTargetId = "Add_mark_for_object_partial_id" },new {@class= "link_standart_for_div" })
+            <div class="Add_mark_for_object_yellow_star div_inline_block">
+                @Ajax.ActionLink(" ", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i, num_block_for_list= ViewBag.Num }, new AjaxOptions { UpdateTargetId = string.Concat("Add_mark_for_object_partial_id",ViewBag.Num) },new {@class= "link_standart_for_div" })
             </div>
         }
         if (((int)ViewBag.Mark) < i)
         {
-            <div class="Add_mark_for_object_white_star">
-                @Ajax.ActionLink(" ", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i }, new AjaxOptions { UpdateTargetId = "Add_mark_for_object_partial_id" }, new { @class = "link_standart_for_div" })
+            <div class="Add_mark_for_object_white_star div_inline_block">
+                @Ajax.ActionLink(" ", "Change_mark_for_object", "Home", new { id = ViewBag.Id, num = i, num_block_for_list = ViewBag.Num }, new AjaxOptions { UpdateTargetId = string.Concat("Add_mark_for_object_partial_id", ViewBag.Num) }, new { @class = "link_standart_for_div" })
             </div>
         }
 
@@ -22,4 +22,4 @@
     
    
 
-</div>
+

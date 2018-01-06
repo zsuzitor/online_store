@@ -12,7 +12,26 @@ namespace online_store.Models
         public int Object_id { get; set; }
         public string Person_id{ get; set; }
         public string Text{ get; set; }
-        public int? Mark { get; set; }
+        private int? mark { get; set; }
+        public int? Mark { get { return mark; } set {
+                if (value == null)
+                {
+                    mark = null;
+                    return;
+                }
+                    
+                if (value < 0)
+                    mark = 0;
+                else
+                {
+                    if (value > 5)
+                        mark = 5;
+                    else
+                        mark = value;
+                }
+                
+            } }
+        
 
         public Comment()
         {
@@ -20,11 +39,31 @@ namespace online_store.Models
             Object_id = 0;
             Person_id = null;
             Text = null;
-            Mark = null;
+            mark = null;
         }
 
     }
-    public class Connect_image
+    public class Comment_view
+    {
+        public Comment Db { get; set; }
+        public byte[] Image_user { get; set; }
+        public string User_name { get; set; }
+        public Comment_view()
+        {
+            Db = null;
+            Image_user = null;
+            User_name = null;
+        }
+        public Comment_view(Comment a)
+        {
+            Db = a;
+            Image_user = null;
+            User_name = null;
+        }
+    }
+
+        //
+        public class Connect_image
     {
         public int Id { get; set; }
         public string Something_id { get; set; }
@@ -82,6 +121,21 @@ namespace online_store.Models
         }
 
     }
+    public class Person
+    {
+        public ApplicationUser Db { get; set; }
 
 
-}
+
+
+        public Person()
+        {
+            Db = null;
+        }
+        public Person(ApplicationUser a)
+        {
+            Db = a;
+        }
+    }
+
+    }
