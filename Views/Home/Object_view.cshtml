@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Object_view";
 }
+
 <script>
     function change_image(a) {
         var main_image = document.getElementById("Object_view_main_image_id");
@@ -43,7 +44,7 @@
                 <div class="div_inline_block" id="Object_follow_block_all_id">
                     @Html.Action("Object_follow", "Home", new { id = Model.Db.Id, click = false })
                 </div>
-                <div class="div_inline_block" id="Object_add_basket_block_all_id">@Html.Action("Object_add_basket", "Home", new { id = Model.Db.Id, click = false })</div>
+                <div class="div_inline_block Object_add_basket_block_all_class" id="Object_add_basket_block_all_id">@Html.Action("Object_add_basket", "Home", new { id = Model.Db.Id, click = false })</div>
                 <div id="Add_mark_for_object_partial_id" class="Object_view_mark_main">@Html.Action("Add_mark_for_object", "Home", new { id = Model.Db.Id })</div>
             </div>
         </div>
@@ -95,7 +96,8 @@
         
         <div>@foreach (var i in Model.Comments)
         {
-            <div class="Object_view_one_comment_block">
+            <div id=@string.Concat("Object_view_one_comm_num_id",i.Db.Id.ToString()) class="Object_view_one_comment_block">
+                
                 <div class="div_inline_block">
                     <div>
                         @if (i.Image_user != null && i.Image_user.Count() > 0)
@@ -119,7 +121,13 @@
                             <p>@i.User_name</p>
                         </div>
                     }
-
+                    @if (i.Db.Person_id == ViewBag.Person_id)
+                    {
+                        @Ajax.ActionLink("Удалить", "Delete_Comment", "Home", new {id=i.Db.Id },
+                       new AjaxOptions {UpdateTargetId= string.Concat("Object_view_one_comm_num_id", i.Db.Id.ToString()) },
+                       new { })
+                    }
+                    
                 </div>
                 <div class="div_inline_block">
                     @if (!string.IsNullOrEmpty(i.Db.Text))
@@ -156,6 +164,7 @@
                 </div>
 
             </div>
+           
         }</div>
        
 

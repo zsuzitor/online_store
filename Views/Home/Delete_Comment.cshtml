@@ -1,0 +1,75 @@
+﻿@model online_store.Models.Comment_view
+
+<div class="Object_view_one_comment_block">
+    @if (Model != null)
+    {
+        <div class="div_inline_block">
+            <div>
+                @if (Model.Image_user != null && Model.Image_user.Count() > 0)
+                {
+                    <a class="link_standart_for_div" href=@Url.Action("Personal_record","Home",new {id= Model.Db.Person_id })>
+                        <img id="Object_view_main_image_id" src=@String.Format("data:image/jpeg;base64," + Convert.ToBase64String(Model.Image_user)) />
+                    </a>
+                }
+                @if (Model.Image_user == null || Model.Image_user.Count() < 0)
+                {
+                    <a class="link_standart_for_div" href=@Url.Action("Personal_record","Home",new {id= Model.Db.Person_id })>
+                        <img id="Object_view_main_image_id" src="/Content/images/camera_200.png" />
+                    </a>
+                }
+
+
+            </div>
+            @if (!string.IsNullOrEmpty(Model.User_name))
+            {
+                <div>
+                    <p>@Model.User_name</p>
+                </div>
+            }
+            @if (Model.Db.Person_id == ViewBag.Person_id)
+            {
+                @Ajax.ActionLink("Удалить", "Delete_Comment", "Home", new { id = Model.Db.Id },
+                       new AjaxOptions { UpdateTargetId = string.Concat("Object_view_one_comm_num_id", Model.Db.Id.ToString()) },
+                       new { })
+            }
+        </div>
+        <div class="div_inline_block">
+            <p>@ViewBag.Message</p>
+            @if (!string.IsNullOrEmpty(Model.Db.Text))
+            {
+                <div>@Html.Label("", Model.Db.Text)</div>
+            }
+            @if (Model.Db.Mark != null)
+            {
+                <div class="Object_view_comm_block_mark">
+
+
+                    @for (int i1 = 1; i1 < 6; ++i1)
+                    {
+                        if (Model.Db.Mark >= i1)
+                        {
+                            <div class="Add_mark_for_object_yellow_star div_inline_block">
+                            </div>
+                        }
+                        if (Model.Db.Mark < i1)
+                        {
+                            <div class="Add_mark_for_object_white_star div_inline_block">
+                            </div>
+                        }
+
+                    }
+
+
+
+
+
+                </div>
+            }
+
+        </div>
+    }
+
+
+   
+
+</div>

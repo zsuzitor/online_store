@@ -36,7 +36,7 @@
                         <div class="div_inline_block" id=@string.Concat("Object_follow_block_all_id", num)>
                             @Html.Action("Object_follow", "Home", new { id = i.Db.Id, num_block_for_list=num })
                         </div>
-                        <div class="div_inline_block" id=@string.Concat("Object_add_basket_block_all_id", num)>
+                        <div class="div_inline_block Object_add_basket_block_all_class" id=@string.Concat("Object_add_basket_block_all_id", num)>
                             @Html.Action("Object_add_basket", "Home", new { id = i.Db.Id, num_block_for_list=num })
                         </div>
                             <div class="Add_mark_for_object_partial_class" id=@string.Concat("Add_mark_for_object_partial_id", num) >@Html.Action("Add_mark_for_object", "Home", new { id = i.Db.Id, num = num.ToString() })</div>

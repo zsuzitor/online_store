@@ -44,6 +44,7 @@ namespace online_store.Controllers
             public ActionResult Object_view(int id)
         {
             var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            ViewBag.Person_id = check_id;
             var not_res=db.Objects.FirstOrDefault(x1 => x1.Id == id);
             Object_os_for_view res = new Object_os_for_view(not_res);
             var img =db.Images.Where(x1=>x1.Something_id==id.ToString()&&x1.What_something== "Object");
@@ -245,8 +246,44 @@ namespace online_store.Controllers
             db.SaveChanges();
             return PartialView();
         }
-        //[Authorize(Roles="admin")]
-        public ActionResult Add_new_image(HttpPostedFileBase[] uploadImage,int id)
+
+
+
+        //[Authorize]
+        public ActionResult Delete_Comment(int id)
+        {
+            var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            ViewBag.Person_id = check_id;
+            
+            var com=db.Comments.FirstOrDefault(x1=>x1.Id==id);
+            Comment_view res = null;
+            if (com != null)
+            {
+                if (com.Person_id == check_id)
+                {
+                    db.Comments.Remove(com);
+                    db.SaveChanges();
+                    ViewBag.Message = "Удалено";
+                }
+                else
+                {
+                    ViewBag.Message = "Удалить невозможно";
+                    var user = db.Users.First(x1 => x1.Id == com.Person_id);
+                    res = new Comment_view(com) { Image_user = user.Image, User_name = user.Name };
+
+                }
+            }
+            
+
+
+            return PartialView(res);
+        }
+
+
+
+
+            //[Authorize(Roles="admin")]
+            public ActionResult Add_new_image(HttpPostedFileBase[] uploadImage,int id)
         {
             var imgs = Get_photo_post(uploadImage);
             foreach(var i in imgs)

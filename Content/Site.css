@@ -65,13 +65,19 @@ div.div_body {
 p{
     width:100%;
 }
-
-.link_without_prop {
+a {
+    text-decoration: none;
+}
+    a:hover {
+        text-decoration: none;
+    }
+/*.link_without_prop {
     text-decoration:none;
 }
     .link_without_prop:hover {
         text-decoration:none;
-    }
+    }*/
+
 div.div_footer{
     height:200px;
     background-color:grey;
@@ -192,7 +198,7 @@ div.Object_follow_follow_img {
     width: 50px;
     position:relative;
 }
-#Object_add_basket_block_all_id {
+.Object_add_basket_block_all_class {
     height: 50px;
     width: 50px;
     float:right;
