@@ -275,6 +275,9 @@
     <Content Include="Views\Home\Add_mark_for_object.cshtml" />
     <Content Include="Views\Home\List_objects_type.cshtml" />
     <Content Include="Views\Home\Delete_Comment.cshtml" />
+    <Content Include="Views\Home\Basket_page.cshtml" />
+    <Content Include="Views\Home\Delete_object_from_basket.cshtml" />
+    <Content Include="Views\Home\Basket_one_object_partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

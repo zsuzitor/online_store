@@ -1,0 +1,19 @@
+﻿@model IEnumerable<online_store.Models.Connect_basket>
+
+@{
+    ViewBag.Title = "Basket_page";
+}
+
+<h2>Basket_page</h2>
+
+<div>
+    @foreach(var i in Model)
+    {
+        @Html.Action("Basket__one_object_partial","Home",new {id=i.Object_id })
+
+    }
+    <div>
+        <p>Покупок на сумму: @ViewBag.All_price</p>
+    </div>
+    <div>@Html.ActionLink("Купить","Buy_basket","Home",new { },new { })</div>
+</div>

@@ -1,0 +1,30 @@
+﻿@model online_store.Models.Object_os_for_view
+
+<div class="Basket_one_object_partial_one_block" id=@string.Concat("Basket_one_object_partial_one_block_id",Model.Db.Id)>
+    <div class="Basket_one_object_left_block div_inline_block">
+        <div>
+            @if (Model.Images.Count > 0 && Model.Images[0].Image != null)
+            {
+                <a class="link_standart_for_div" href=@Url.Action("Object_view", "Home",new {id= Model.Db.Id })>
+                    <img id="" src=@String.Format("data:image/jpeg;base64," + Convert.ToBase64String(Model.Images[0].Image)) />
+                </a>
+            }
+            @if (Model.Images.Count < 1 || Model.Images[0].Image == null)
+            {
+                <a class="link_standart_for_div" href=@Url.Action("Object_view", "Home",new {id= Model.Db.Id })>
+                    <img id="" src="/Content/images/camera_200.png" />
+                </a>
+            }
+        </div>
+
+    </div>
+    <div class="Basket_one_object_right_block div_inline_block">
+        <p>@Model.Db.Name</p>
+        <p>Цена без скидки: @Model.Db.Price</p>
+        <p>Скидка: @Model.Db.Discount</p>
+        <p>Цена со скидкой: @(Model.Db.Price * (1 - @Model.Db.Discount))</p>
+    </div>
+    <div class="Basket_one_object_delete_block div_inline_block">
+    @Ajax.ActionLink("Удалить", "Delete_object_from_basket", "Home", new { id = Model.Db.Id },
+        new AjaxOptions {UpdateTargetId= string.Concat("Basket_one_object_partial_one_block_id", Model.Db.Id) }, new { })</div>
+</div>

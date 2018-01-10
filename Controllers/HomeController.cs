@@ -170,7 +170,34 @@ namespace online_store.Controllers
             return PartialView();
         }
         //[Authorize]
-        public ActionResult Object_add_basket(int id, bool? click, string num_block_for_list="")
+        public ActionResult Basket_page()
+        {
+            var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var res = db.Baskets.Where(x1 => x1.Person_id == check_id);//.Join(db.Objects,x1=>x1.Object_id,x2=>x2.Id,(x1,x2)=>x2);
+            //var res = new List<Object_os_for_view>();
+            ViewBag.All_price = res.Sum(x1 => x1.Price);
+            
+            return View(res);
+        }
+        //TODO
+        //[Authorize]
+        public ActionResult Buy_basket()
+        {
+
+            return View();
+        }
+            //[Authorize]
+            public ActionResult Basket_one_object_partial(int id)
+        {
+            
+            var imgs = db.Images.Where(x1 => x1.What_something == "Object" && x1.Something_id == id.ToString()).ToList();
+           var obg= db.Objects.First(x1 => x1.Id == id);
+            var res=new Object_os_for_view(obg) { Images = imgs };
+            return View(res);
+
+        }
+            //[Authorize]
+            public ActionResult Object_add_basket(int id, bool? click, string num_block_for_list="")
         {
             ViewBag.Id = id;
             ViewBag.Num = num_block_for_list;
@@ -203,8 +230,24 @@ namespace online_store.Controllers
 
             return PartialView();
         }
-        //[Authorize(Roles="admin")]
-        public ActionResult Delete_object(int id)
+        //[Authorize]
+        public ActionResult Delete_object_from_basket(int id)
+        {
+            var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var obg=db.Baskets.FirstOrDefault(x1=>x1.Object_id==id&&x1.Person_id== check_id);
+            if (obg != null)
+            {
+                db.Baskets.Remove(obg);
+                db.SaveChanges();
+                ViewBag.Message = "Удалено";
+            }
+            else
+                ViewBag.Message = "Ошибка";
+            return View();
+
+        }
+            //[Authorize(Roles="admin")]
+            public ActionResult Delete_object(int id)
         {
             db.Objects.Remove(db.Objects.First(x1=>x1.Id==id));
             db.Comments.RemoveRange(db.Comments.Where(x1=>x1.Object_id==id));
