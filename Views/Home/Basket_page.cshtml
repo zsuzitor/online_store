@@ -9,11 +9,16 @@
 <div>
     @foreach(var i in Model)
     {
-        @Html.Action("Basket__one_object_partial","Home",new {id=i.Object_id })
+        @Html.Action("Basket_one_object_partial","Home",new {id=i.Object_id })
 
     }
-    <div>
-        <p>Покупок на сумму: @ViewBag.All_price</p>
+    <hr />
+    <div class="Basket_page_all_price_block">
+        <div class="Basket_page_all_price_block_lvl_2"><div>Покупок на сумму(без скидок): @ViewBag.All_price</div>
+        <div>Покупок на сумму(со скидкой):@ViewBag.All_price_small</div></div>
+        
+        
+        
     </div>
-    <div>@Html.ActionLink("Купить","Buy_basket","Home",new { },new { })</div>
+    <div class="Basket_page_buy_but">@Html.ActionLink("Купить Все","Buy_basket","Home",new { },new {@class= "link_standart_for_div" })</div>
 </div>

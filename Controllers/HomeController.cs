@@ -15,10 +15,11 @@ namespace online_store.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         //var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
         //[Authorize(Roles="admin")] [Authorize]
-
+        
 
         public ActionResult Index()
         {
+           
             return View();
         }
         public ActionResult List_objects()
@@ -49,42 +50,69 @@ namespace online_store.Controllers
             Object_os_for_view res = new Object_os_for_view(not_res);
             var img =db.Images.Where(x1=>x1.Something_id==id.ToString()&&x1.What_something== "Object");
             res.Images = img.ToList();
-            var com = db.Comments.Where(x1 => x1.Object_id == id).ToList();
+            var com = db.Comments.Where(x1 => x1.Object_id == id&&!string.IsNullOrEmpty(x1.Text)).ToList();
             var com_person = com.FirstOrDefault(x1=>x1.Person_id== check_id);
             if (com_person == null)
                 ViewBag.Can_commented = true;
             else
             {
-                if(string.IsNullOrEmpty(com_person.Text))
-                    ViewBag.Can_commented = true;
-                else
+                //if(string.IsNullOrEmpty(com_person.Text))
+                   // ViewBag.Can_commented = true;
+               // else
                     ViewBag.Can_commented = false;
+                //
+                var user = db.Users.First(x1 => x1.Id == check_id);
+                var tmp = new Comment_view(com_person) { Image_user = user.Image, User_name = user.Name };
+
+                res.Comments.Add(tmp);
             }
                
             foreach (var i in com)
             {
-                var user = db.Users.First(x1 => x1.Id == i.Person_id);
-                var tmp = new Comment_view(i) { Image_user=user.Image, User_name=user.Name };
-                
-                res.Comments.Add(tmp);
+
+                if (i.Person_id != check_id)
+                {
+                    var user = db.Users.First(x1 => x1.Id == i.Person_id);
+                    var tmp = new Comment_view(i) { Image_user = user.Image, User_name = user.Name };
+
+                    res.Comments.Add(tmp);
+                }
+               
             }
            
 
 
             return View(res);
         }
+        //добавляет и извеняет коммент
         public ActionResult Add_comment(int id_object,string text,int mark)
         {
             var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            var new_comm = new Comment() { Object_id= id_object, Person_id=check_id, Text=text };
-            if (mark > 0)
-            
-                new_comm.Mark = mark;
-            
+            var marks = db.Comments.FirstOrDefault(x1 => x1.Object_id == id_object && x1.Person_id == check_id);
+            if (marks == null)
+            {
+                var new_comm = new Comment() { Object_id = id_object, Person_id = check_id, Text = text };
+                if (mark > 0)
+
+                    new_comm.Mark = mark;
+
+                else
+                    new_comm.Mark = null;
+                db.Comments.Add(new_comm);
+                db.SaveChanges();
+            }
             else
-                new_comm.Mark = null;
-            db.Comments.Add(new_comm);
-            db.SaveChanges();
+            {
+                if (!string.IsNullOrEmpty(text))
+                {
+                    marks.Text = text;
+                    if (mark > 0)
+                        marks.Mark = mark;
+                    db.SaveChanges();
+                }
+                
+            }
+                
 
             return RedirectToAction("Object_view", "Home",new {id=id_object });
 
@@ -175,7 +203,11 @@ namespace online_store.Controllers
             var check_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             var res = db.Baskets.Where(x1 => x1.Person_id == check_id);//.Join(db.Objects,x1=>x1.Object_id,x2=>x2.Id,(x1,x2)=>x2);
             //var res = new List<Object_os_for_view>();
-            ViewBag.All_price = res.Sum(x1 => x1.Price);
+            //var summ =res.Select(x1=>x1.Price).ToList();
+            var summ_1= res.Join(db.Objects, x1 => x1.Object_id, x2 => x2.Id, (x1, x2) => x2).ToList();
+            
+            ViewBag.All_price = summ_1.Sum(x1=>x1.Price);
+            ViewBag.All_price_small = summ_1.Sum(x1 => (x1.Price*(1-x1.Discount)));
             
             return View(res);
         }
@@ -193,7 +225,7 @@ namespace online_store.Controllers
             var imgs = db.Images.Where(x1 => x1.What_something == "Object" && x1.Something_id == id.ToString()).ToList();
            var obg= db.Objects.First(x1 => x1.Id == id);
             var res=new Object_os_for_view(obg) { Images = imgs };
-            return View(res);
+            return PartialView(res);
 
         }
             //[Authorize]
@@ -243,7 +275,7 @@ namespace online_store.Controllers
             }
             else
                 ViewBag.Message = "Ошибка";
-            return View();
+            return PartialView();
 
         }
             //[Authorize(Roles="admin")]

@@ -52,7 +52,8 @@
     </div>
     <div  class="div_inline_block Object_view_right_block">
         <div>@Html.Label(Model.Db.Name)</div>
-        <div>@Html.Label(Model.Db.Id.ToString())</div>
+        <div>@Html.Label("Артикул"+Model.Db.Id.ToString())</div>
+        
         
         <div>@Html.Label(Model.Db.Type)</div>
         <div>@Html.Label(Model.Db.Category)</div>

@@ -2,7 +2,7 @@
 
 <div class="Basket_one_object_partial_one_block" id=@string.Concat("Basket_one_object_partial_one_block_id",Model.Db.Id)>
     <div class="Basket_one_object_left_block div_inline_block">
-        <div>
+        
             @if (Model.Images.Count > 0 && Model.Images[0].Image != null)
             {
                 <a class="link_standart_for_div" href=@Url.Action("Object_view", "Home",new {id= Model.Db.Id })>
@@ -15,11 +15,12 @@
                     <img id="" src="/Content/images/camera_200.png" />
                 </a>
             }
-        </div>
+        
 
     </div>
     <div class="Basket_one_object_right_block div_inline_block">
-        <p>@Model.Db.Name</p>
+        <p>Название @Model.Db.Name</p>
+        <p>Артикул @Model.Db.Id</p>
         <p>Цена без скидки: @Model.Db.Price</p>
         <p>Скидка: @Model.Db.Discount</p>
         <p>Цена со скидкой: @(Model.Db.Price * (1 - @Model.Db.Discount))</p>

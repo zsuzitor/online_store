@@ -309,17 +309,43 @@ div.Object_add_basket_follow_img_full {
 }
 /*Basket_one_object*/
 div.Basket_one_object_partial_one_block{
-    height:400px;
+    height:200px;
 }
 div.Basket_one_object_left_block{
-    width:30%;
+    width:250px;
     height:100%;
 }
 div.Basket_one_object_right_block {
-    width: 60%;
+    width: 55%;
     height: 100%;
 }
 div.Basket_one_object_delete_block {
-    width: 8%;
+    width: 75px;
     height: 100%;
+    float:right;
 }
+div.Basket_page_all_price_block{
+   position:relative;
+   height:100px;
+}
+div.Basket_page_all_price_block_lvl_2{
+    float:right;
+    
+}
+div.Basket_page_buy_but {
+    width: 300px;
+    font-size: 35pt;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: dotted 2px red;
+    background-color: #ffabab;
+    transition: 2s;
+}
+    div.Basket_page_buy_but:hover {
+        border: solid 2px black;
+        background-color:gainsboro;
+    }

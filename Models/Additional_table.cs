@@ -82,14 +82,14 @@ namespace online_store.Models
     {
         public int Id { get; set; }
         public int Object_id { get; set; }
-        public double Price { get; set; }
+        //public double Price { get; set; }
         public string Person_id { get; set; }
         public Connect_basket()
         {
             Id = 0;
             Object_id = 0;
             Person_id = "";
-            Price = 0;
+           // Price = 0;
 
         }
     }
