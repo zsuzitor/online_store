@@ -126,17 +126,27 @@ namespace online_store.Models
     public class Person
     {
         public ApplicationUser Db { get; set; }
-
-
+        public List<Connect_image> Images;
+        public List<Comment> Comments;
+        public List<Object_os_for_view> Baskets;
+        public List<Object_os_for_view> Follow;
 
 
         public Person()
         {
             Db = null;
+            Images = new List<Connect_image>();
+            Comments = new List<Comment>();
+            Baskets = new List<Object_os_for_view>();
+            Follow = new List<Object_os_for_view>();
         }
         public Person(ApplicationUser a)
         {
             Db = a;
+            Images = new List<Connect_image>();
+            Comments = new List<Comment>();
+            Baskets = new List<Object_os_for_view>();
+            Follow = new List<Object_os_for_view>();
         }
     }
 

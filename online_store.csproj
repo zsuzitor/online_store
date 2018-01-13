@@ -278,6 +278,7 @@
     <Content Include="Views\Home\Basket_page.cshtml" />
     <Content Include="Views\Home\Delete_object_from_basket.cshtml" />
     <Content Include="Views\Home\Basket_one_object_partial.cshtml" />
+    <Content Include="Views\Home\Personal_record.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

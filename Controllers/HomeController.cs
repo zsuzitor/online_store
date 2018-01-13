@@ -159,6 +159,42 @@ namespace online_store.Controllers
             id=string.IsNullOrEmpty(id) ? System.Web.HttpContext.Current.User.Identity.GetUserId() : id;
             var not_res = db.Users.First(x1 => x1.Id == id);
             var res = new Person(not_res);
+            res.Comments.AddRange(db.Comments.Where(x1 => x1.Person_id == id).ToList());
+            
+
+            //res.Images.AddRange(db.Images.Where(x1 => x1.What_something == "Person" && x1.Something_id == id).ToList());
+            //
+            ViewBag.Baskets = db.Baskets.Where(x1 => x1.Person_id == id).ToList();
+            /* var bsk = db.Baskets.Where(x1 => x1.Person_id == id).Join(db.Objects, x1 => x1.Object_id, x2 => x2.Id, (x1, x2) => x2).ToList();
+             foreach (var i in bsk)
+             {
+                 var tmp_img = db.Images.First(x1 => x1.What_something == "Object" && x1.Something_id == i.Id.ToString());
+
+                 res.Baskets.Add(new Object_os_for_view(i) {
+                     Images = new List<Connect_image> {
+                tmp_img}
+             });
+
+
+             } */
+            //
+
+            ViewBag.Follow = db.Follow_obgects.Where(x1 => x1.Person_id == id).ToList();
+            /*
+           var foll = db.Follow_obgects.Where(x1=>x1.Person_id==id).Join(db.Objects, x1 => x1.Object_id, x2 => x2.Id, (x1, x2) => x2).ToList();
+           foreach (var i in foll)
+           {
+               var tmp_img = db.Images.First(x1 => x1.What_something == "Object" && x1.Something_id == i.Id.ToString());
+
+               res.Baskets.Add(new Object_os_for_view(i)
+               {
+                   Images = new List<Connect_image>{
+               tmp_img }
+           });
+
+
+           }
+           */
 
             return View(res);
         }
@@ -228,8 +264,18 @@ namespace online_store.Controllers
             return PartialView(res);
 
         }
-            //[Authorize]
-            public ActionResult Object_add_basket(int id, bool? click, string num_block_for_list="")
+        //[Authorize]
+        public ActionResult Follow_one_object_partial(int id)
+        {
+
+            var imgs = db.Images.Where(x1 => x1.What_something == "Object" && x1.Something_id == id.ToString()).ToList();
+            var obg = db.Objects.First(x1 => x1.Id == id);
+            var res = new Object_os_for_view(obg) { Images = imgs };
+            return PartialView(res);
+
+        }
+        //[Authorize]
+        public ActionResult Object_add_basket(int id, bool? click, string num_block_for_list="")
         {
             ViewBag.Id = id;
             ViewBag.Num = num_block_for_list;

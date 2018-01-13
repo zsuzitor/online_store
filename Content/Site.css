@@ -349,3 +349,21 @@ div.Basket_page_buy_but {
         border: solid 2px black;
         background-color:gainsboro;
     }
+
+/*Personal_record*/
+div.Personal_record_right_block {
+    width: 30%;
+    float:right;
+}
+div .Personal_record_left_block {
+    width: 67%;
+}
+div.Personal_record_info_block{
+    height:300px;
+}
+div.Personal_record_main_img_block {
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 300px;
+    max-height: 300px;
+}
